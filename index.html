@@ -1,0 +1,94 @@
+
+
+<!DOCTYPE html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+
+
+<style>
+
+body {
+  background: #8FBC8F;
+  padding: 20px;
+  font-family: Helvetica;
+}
+
+#app {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  margin-left: 10em;
+  max-width: 50em;
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+
+}
+    
+   
+
+
+li {
+  margin: 8px 0;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+del {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+
+</style>
+
+
+<body>
+<div id="app">
+  <h2> Bucket List</h2>
+  <ol>
+    <li v-for="bucket in lists">
+      <label>
+        <input type="checkbox"
+          v-on:change="toggle(bucket)"
+          v-bind:checked="bucket.done">
+
+        <del v-if="bucket.done">
+          {{ bucket.text }}
+        </del>
+        <span v-else>
+          {{ bucket.text }}
+        </span>
+      </label>
+    </li>
+  </ol> 
+</div>
+
+
+</body>
+
+
+<script>
+
+new Vue({
+  el: "#app",
+  data: {
+    lists: [
+      { text: "Ziplining at Obudu Cattle Ranch", done: true },
+      { text: "Scuba Diving in Tanzania", done: false },
+      { text: "Climbing Sherry Hills, Jos", done: true },
+      { text: "Attending the Durban in Kano", done: false }
+    ]
+  },
+  methods: {
+  	toggle: function(bucket){
+    	bucket.done = !bucket.done
+    }
+  }
+})
+
+</script>
